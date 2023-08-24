@@ -19,7 +19,7 @@ local installdir = pathJoin(homedir,"installed/Core/GEOSpyD")
 local miniconda_version = "23.5.2-0"
 local python_version = "3.11"
 local geospyd_version = miniconda_version .. "_py" .. python_version
-local builddate = "2023-07-17"
+local builddate = "2023-08-24"
 
 local pathdir = pathJoin(geospyd_version,builddate)
 local pkgdir = pathJoin(installdir,pathdir)
