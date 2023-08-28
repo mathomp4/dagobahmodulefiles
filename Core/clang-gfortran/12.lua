@@ -1,4 +1,7 @@
 -- stub routine for clang + gfortran-12 from brew  
+--
+-- install gcc-12 via:
+--   brew install gcc@12
 -- 
 
 family("Compiler")
