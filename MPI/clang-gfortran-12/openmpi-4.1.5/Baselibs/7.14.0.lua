@@ -28,7 +28,6 @@
 -- ]]
 
 family("Baselibs")
---prereq("clang-gfortran/12", "openmpi/4.1.5")
 
 local compilername = "clang-gfortran-12"
 local mpiname = "openmpi-4.1.5"
