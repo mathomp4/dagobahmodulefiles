@@ -21,9 +21,5 @@ setenv("CXX",pathJoin(cbindir,"clang++"))
 setenv("FC",pathJoin(fbindir,"gfortran-13"))
 setenv("F90",pathJoin(fbindir,"gfortran-13"))
 
--- prepend_path("PATH",pathJoin(pkgdir,"bin"))
--- prepend_path("LD_LIBRARY_PATH",pathJoin(pkgdir,"lib"))
--- prepend_path("DYLD_LIBRARY_PATH",pathJoin(pkgdir,"lib"))
--- prepend_path("LIBRARY_PATH",pathJoin(pkgdir,"lib"))
--- prepend_path("INCLUDE",pathJoin(pkgdir,"include"))
--- prepend_path("MANPATH",pathJoin(pkgdir,"share/man"))
+-- per scivision, set OpenMP_ROOT: https://gist.github.com/scivision/16c2ca1dc250f54d34f1a1a35596f4a0
+setenv("OpenMP_ROOT",pathJoin(homebrewdir,"opt/libomp"))

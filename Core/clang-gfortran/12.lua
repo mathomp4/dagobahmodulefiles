@@ -2,7 +2,6 @@
 --
 -- install gcc-12 via:
 --   brew install gcc@12
--- 
 
 family("Compiler")
 
@@ -21,3 +20,6 @@ setenv("CC",pathJoin(cbindir,"clang"))
 setenv("CXX",pathJoin(cbindir,"clang++"))
 setenv("FC",pathJoin(fbindir,"gfortran-12"))
 setenv("F90",pathJoin(fbindir,"gfortran-12"))
+
+-- per scivision, set OpenMP_ROOT: https://gist.github.com/scivision/16c2ca1dc250f54d34f1a1a35596f4a0
+setenv("OpenMP_ROOT",pathJoin(homebrewdir,"opt/libomp"))
