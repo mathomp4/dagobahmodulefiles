@@ -1,11 +1,7 @@
 -- [[
 --
--- This was cloned with:
---
---   git clone -j 4 --recurse-submodules -b v7.14.0 https://github.com/GEOS-ESM/ESMA-Baselibs.git ESMA-Baselibs-7.14.0/src
---
 -- This was built using:
--- $ make -j6 install ESMF_COMM=openmpi ESMF_COMPILER=gfortran prefix=$HOME/installed/MPI/gcc-gfortran-12/openmpi-4.1.5/Baselibs/7.14.0/Darwin |& tee makeinstall.gcc-gfortran-12_openmpi-4.1.5.log
+-- $ make -j6 install ESMF_COMM=openmpi ESMF_COMPILER=nag prefix=$HOME/installed/MPI/nag-7.1.37/openmpi-5.0.0rc12/Baselibs/7.14.0/Darwin |& tee makeinstall.nag-7.1.37_openmpi-5.0.0rc12.log
 --
 -- NOTE: To build curl on Parcel, I had to do:
 --
@@ -28,11 +24,12 @@
 -- ]]
 
 family("Baselibs")
+prereq("nag/7.1.37", "openmpi/5.0.0rc12")
 
-local compilername = "gcc-gfortran-12"
-local mpiname = "openmpi-4.1.5"
+local compilername = "nag-7.1.37"
+local mpiname = "openmpi-5.0.0rc12"
 
-local version = myModuleVersion()
+local version = "7.14.0"
 local pathdir = pathJoin("MPI",compilername,mpiname)
 local homedir = os.getenv("HOME")
 local installdir = pathJoin(homedir,"installed")
