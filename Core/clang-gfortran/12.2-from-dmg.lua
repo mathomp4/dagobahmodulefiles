@@ -20,6 +20,10 @@ local mroot = os.getenv("MODULEPATH_ROOT")
 local mdir  = pathJoin(mroot,"Compiler/clang-gfortran-12.2-from-dmg")
 prepend_path("MODULEPATH", mdir)
 
+-- This makes it so that 'which gfortran' returns the path to this compiler
+-- Just makes it safer as brew has its own gfortran (which is gfortran-13)
+prepend_path("PATH",fbindir)
+
 setenv("CC",pathJoin(cbindir,"clang"))
 setenv("CXX",pathJoin(cbindir,"clang++"))
 setenv("FC",pathJoin(fbindir,"gfortran"))
