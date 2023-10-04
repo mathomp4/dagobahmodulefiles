@@ -19,7 +19,7 @@
 -- ]]
 
 family("MPI")
-prereq("clang-gfortran/12")
+prereq("clang-gfortran/12.2-from-dmg")
 
 local compilername = "clang-gfortran-12.2-from-dmg"
 
