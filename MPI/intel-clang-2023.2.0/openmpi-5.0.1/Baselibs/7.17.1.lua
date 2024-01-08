@@ -1,14 +1,12 @@
 -- [[
---
--- This was cloned with:
---
---   git clone -j 4 --recurse-submodules -b v7.14.0 https://github.com/GEOS-ESM/ESMA-Baselibs.git ESMA-Baselibs-7.14.0/src
---
 -- This was built using:
--- $ make -j6 install ESMF_COMM=openmpi ESMF_COMPILER=gfortranclang prefix=$HOME/installed/MPI/clang-gfortran-12/openmpi-5.0.0rc12/Baselibs/7.14.0/Darwin |& tee makeinstall.clang-gfortran-12_openmpi-5.0.0rc12.log
+--
+-- $ make -j4 install ESMF_COMM=openmpi ESMF_COMPILER=intelclang prefix=$HOME/installed/MPI/intel-clang-2023.2.0/openmpi-5.0.1/Baselibs/7.17.1/Darwin |& tee makeinstall.intel-clang-2023.2.0_openmpi-5.0.1.log
+--
+-- NOTE: xgboost will not build because Rosetta2 + clang + libomp from brew doesn't work
 --
 -- NOTE: To build curl on Parcel, I had to do:
---
+-- 
 --   brew install automake autoconf libtool
 --
 -- then I had to make symlinks so that it could find these:
@@ -19,20 +17,15 @@
 --
 -- NOTE THE LAST ONE! Brew installs glibtool, so as not to collide with clang libtool
 --
--- Also: To build udunits2 (and then nco and cdo) you need to install the texinfo package
---
---   brew install texinfo
---
--- as udunits2 needs makeinfo.
 --
 -- ]]
 
 family("Baselibs")
 
-local compilername = "clang-gfortran-12"
-local mpiname = "openmpi-5.0.0rc12"
+local compilername = "intel-clang-2023.2.0"
+local mpiname = "openmpi-5.0.1"
 
-local version = myModuleVersion()
+local version = "7.17.1"
 local pathdir = pathJoin("MPI",compilername,mpiname)
 local homedir = os.getenv("HOME")
 local installdir = pathJoin(homedir,"installed")
