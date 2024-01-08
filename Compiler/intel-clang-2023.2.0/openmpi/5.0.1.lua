@@ -6,24 +6,29 @@
 --        even if Brew can provide them (like libevent), it doesn't seem to find them
 --
 -- This was built using:
--- $ mkdir build-clang-gfortran-13 && cd build-clang-gfortran-13
--- $ ../configure --disable-wrapper-rpath --disable-wrapper-runpath \
---    CC=clang CXX=clang++ FC=gfortran-13 \
---    --with-hwloc=internal --with-libevent=internal --with-pmix=internal \
---    --prefix=$HOME/installed/Compiler/clang-gfortran-13/openmpi/5.0.0rc12 |& tee configure.clang-gfortran-13.log
--- $ mv config.log config.clang-gfortran-13.log
--- $ make -j6 |& tee make.clang-gfortran-13.log
--- $ make install |& tee makeinstall.clang-gfortran-13.log
--- $ make check |& tee makecheck.clang-gfortran-13.log
 --
+-- $ mkdir build-intel-clang-2023.2.0 && cd build-intel-clang-2023.2.0
+-- $ lt_cv_ld_force_load=no ../configure --disable-wrapper-rpath --disable-wrapper-runpath \
+--    CC=clang CXX=clang++ FC=ifort \
+--    --with-hwloc=internal --with-libevent=internal --with-pmix=internal \
+--    --prefix=$HOME/installed/Compiler/intel-clang-2023.2.0/openmpi/5.0.1 |& tee configure.intel-clang-2023.2.0.log
+-- $ mv config.log config.intel-clang-2023.2.0.log
+-- $ make -j6 |& tee make.intel-clang-2023.2.0.log
+-- $ make install |& tee makeinstall.intel-clang-2023.2.0.log
+-- $ make check |& tee makecheck.intel-clang-2023.2.0.log
+--
+-- That weird lt_cv_ld_force_load bit is from https://github.com/open-mpi/ompi/issues/7615 
+-- Seems to be an Intel issue.
+-- 
 -- ]]
 
 family("MPI")
-prereq("clang-gfortran/13")
+local intel_version = "2023.2.0"
+prereq("intel-clang/"..intel_version)
 
-local compilername = "clang-gfortran-13"
+local compilername = "intel-clang-"..intel_version
 
-local version = "5.0.0rc12"
+local version = "5.0.1"
 local compiler = pathJoin("Compiler",compilername)
 local homedir = os.getenv("HOME")
 local installdir = pathJoin(homedir,"installed")
@@ -31,7 +36,7 @@ local pkgdir = pathJoin(installdir,compiler,"openmpi",version)
 
 -- Setup Modulepath for packages built by this MPI stack
 local mroot = os.getenv("MODULEPATH_ROOT")
-local mdir = pathJoin(mroot,"MPI/clang-gfortran-13",("openmpi-"..version))
+local mdir = pathJoin(mroot,"MPI",compilername,("openmpi-"..version))
 prepend_path("MODULEPATH", mdir)
 
 setenv("OPENMPI",pkgdir)
@@ -50,5 +55,5 @@ prepend_path("INCLUDE",pathJoin(pkgdir,"include"))
 prepend_path("MANPATH",pathJoin(pkgdir,"share/man"))
 
 -- setenv("OMPI_MCA_btl_tcp_if_include","lo0")
-setenv("OMPI_MCA_io","romio321")
+-- setenv("OMPI_MCA_io","romio321")
 setenv("OMPI_MCA_btl","^tcp")

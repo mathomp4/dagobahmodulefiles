@@ -1,34 +1,44 @@
 -- [[
 --
--- NOTE1: Added new OMPI_MCA flag from https://github.com/open-mpi/ompi/issues/8350
+-- NOTE NOTE NOTE
+--
+-- You *MUST* run:
+--
+--   $ unset MACOSX_DEPLOYMENT_TARGET
+--
+-- to avoid the -dynamiclib not allowed error
+--
+-- This is because MACOSX_DEPLOYMENT_TARGET triggers a bad codepath
+-- inside the configure script
+--
+-- No longer need mismatch all for 7.1
+--
+-- -----------
 --
 -- NOTE2: Added the hwloc, libevent, and pmix line as Open MPI 5 seems to need these and
 --        even if Brew can provide them (like libevent), it doesn't seem to find them
 --
 -- This was built using:
 --
--- $ mkdir build-intel-clang-2023.2.0 && cd build-intel-clang-2023.2.0
--- $ lt_cv_ld_force_load=no ../configure --disable-wrapper-rpath --disable-wrapper-runpath \
---    CC=clang CXX=clang++ FC=ifort \
+-- $ mkdir build-nag-7.1.43 && cd build-nag-7.1.43
+-- $ ../configure --disable-wrapper-rpath --disable-wrapper-runpath \
+--    CC=clang CXX=clang++ FC=nagfor \
 --    --with-hwloc=internal --with-libevent=internal --with-pmix=internal \
---    --prefix=$HOME/installed/Compiler/intel-clang-2023.2.0/openmpi/5.0.0rc12 |& tee configure.intel-clang-2023.2.0.log
--- $ mv config.log config.intel-clang-2023.2.0.log
--- $ make -j6 |& tee make.intel-clang-2023.2.0.log
--- $ make install |& tee makeinstall.intel-clang-2023.2.0.log
--- $ make check |& tee makecheck.intel-clang-2023.2.0.log
+--     --prefix=$HOME/installed/Compiler/nag-7.1.43/openmpi/5.0.1 |& tee configure.nag-7.1.43.log
 --
--- That weird lt_cv_ld_force_load bit is from https://github.com/open-mpi/ompi/issues/7615 
--- Seems to be an Intel issue.
--- 
+-- $ mv config.log config.nag-7.1.43.log
+-- $ make -j4 |& tee make.nag-7.1.43.log
+-- $ make install |& tee makeinstall.nag-7.1.43.log
+-- $ make check |& tee makecheck.nag-7.1.43.log
+--
 -- ]]
 
 family("MPI")
-local intel_version = "2023.2.0"
-prereq("intel-clang/"..intel_version)
+prereq("nag/7.1.43")
 
-local compilername = "intel-clang-"..intel_version
+local compilername = "nag-7.1.43"
 
-local version = "5.0.0rc12"
+local version = "5.0.1"
 local compiler = pathJoin("Compiler",compilername)
 local homedir = os.getenv("HOME")
 local installdir = pathJoin(homedir,"installed")
@@ -36,7 +46,7 @@ local pkgdir = pathJoin(installdir,compiler,"openmpi",version)
 
 -- Setup Modulepath for packages built by this MPI stack
 local mroot = os.getenv("MODULEPATH_ROOT")
-local mdir = pathJoin(mroot,"MPI",compilername,("openmpi-"..version))
+local mdir = pathJoin(mroot,"MPI/nag-7.1.43",("openmpi-"..version))
 prepend_path("MODULEPATH", mdir)
 
 setenv("OPENMPI",pkgdir)
@@ -55,5 +65,4 @@ prepend_path("INCLUDE",pathJoin(pkgdir,"include"))
 prepend_path("MANPATH",pathJoin(pkgdir,"share/man"))
 
 -- setenv("OMPI_MCA_btl_tcp_if_include","lo0")
--- setenv("OMPI_MCA_io","romio321")
 setenv("OMPI_MCA_btl","^tcp")
