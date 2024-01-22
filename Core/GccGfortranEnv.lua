@@ -1,6 +1,6 @@
 -- quick load --
 
 load("GEOSpyD")
-load("gcc-gfortran/12.3.0")
+load("gcc-gfortran/12")
 load("openmpi")
 load("Baselibs")
