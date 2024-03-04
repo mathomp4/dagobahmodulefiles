@@ -2,5 +2,6 @@
 
 load("GEOSpyD")
 load("nag")
-load("openmpi")
+-- load("openmpi")
+load("mpich")
 load("Baselibs")
