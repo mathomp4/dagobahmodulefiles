@@ -1,8 +1,8 @@
--- stub routine for gcc-13 + gfortran-13 from brew  
+-- stub routine for gcc-13 + gfortran-13 from brew
 --
 -- install gcc-13 via:
 --   brew install gcc@13
--- 
+--
 
 family("Compiler")
 

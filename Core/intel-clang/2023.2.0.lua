@@ -1,12 +1,13 @@
--- stub routine for Intel 2023.2.0 with clang --
---
--- I installed TBB, IPP, and MKL from the Base image
---
--- REMEMBER TO HAVE GMAO SUPPORT REMOVE INTEL SYMLINKS
--- IN /usr/local/bin OTHERWISE BASELIBS IS NOT HAPPY
---
--- Also, you *must* have Rosetta2 installed
---
+--[[
+stub routine for Intel 2023.2.0 with clang --
+
+I installed TBB, IPP, and MKL from the Base image
+
+REMEMBER TO HAVE GMAO SUPPORT REMOVE INTEL SYMLINKS
+IN /usr/local/bin OTHERWISE BASELIBS IS NOT HAPPY
+
+Also, you *must* have Rosetta2 installed
+--]]
 
 -- This is only allowed under Rosetta
 local arch = string.gsub(subprocess("arch"), "\n", "")

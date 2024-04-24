@@ -1,35 +1,36 @@
--- [[
---
--- NOTE NOTE NOTE
---
--- You *MUST* run:
---
---   $ unset MACOSX_DEPLOYMENT_TARGET
---
--- to avoid the -dynamiclib not allowed error
---
--- This is because MACOSX_DEPLOYMENT_TARGET triggers a bad codepath
--- inside the configure script
---
--- -----------
---
--- NOTE2: Added the hwloc, libevent, and pmix line as Open MPI 5 seems to need these and
---        even if Brew can provide them (like libevent), it doesn't seem to find them
---
--- This was built using:
---
--- $ mkdir build-nag-7.2.01 && cd build-nag-7.2.01
--- $ ../configure --disable-wrapper-rpath --disable-wrapper-runpath \
---    CC=clang CXX=clang++ FC=nagfor \
---    --with-hwloc=internal --with-libevent=internal --with-pmix=internal \
---     --prefix=$HOME/installed/Compiler/nag-7.2.01/openmpi/5.0.2 |& tee configure.nag-7.2.01.log
---
--- $ mv config.log config.nag-7.2.01.log
--- $ make -j4 |& tee make.nag-7.2.01.log
--- $ make install |& tee makeinstall.nag-7.2.01.log
--- $ make check |& tee makecheck.nag-7.2.01.log
---
--- ]]
+--[[
+
+NOTE NOTE NOTE
+
+You *MUST* run:
+
+  $ unset MACOSX_DEPLOYMENT_TARGET
+
+to avoid the -dynamiclib not allowed error
+
+This is because MACOSX_DEPLOYMENT_TARGET triggers a bad codepath
+inside the configure script
+
+-----------
+
+NOTE2: Added the hwloc, libevent, and pmix line as Open MPI 5 seems to need these and
+       even if Brew can provide them (like libevent), it doesn't seem to find them
+
+This was built using:
+
+mkdir build-nag-7.2.01 && cd build-nag-7.2.01
+
+../configure --disable-wrapper-rpath --disable-wrapper-runpath \
+   CC=clang CXX=clang++ FC=nagfor \
+   --with-hwloc=internal --with-libevent=internal --with-pmix=internal \
+    --prefix=$HOME/installed/Compiler/nag-7.2.01/openmpi/5.0.2 |& tee configure.nag-7.2.01.log
+
+mv config.log config.nag-7.2.01.log
+make -j4 |& tee make.nag-7.2.01.log
+make install |& tee makeinstall.nag-7.2.01.log
+make check |& tee makecheck.nag-7.2.01.log
+
+--]]
 
 family("MPI")
 prereq("nag/7.2.01")

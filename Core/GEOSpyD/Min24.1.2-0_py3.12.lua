@@ -1,15 +1,15 @@
--- File for GEOSpyD
---
--- Installed using the GEOSpyD installer script on github:
---
---   git@github.com:GMAO-SI-Team/GEOSpyD.git
---
--- and I ran
---
---   ./install_miniconda.bash --python_version 3.12 --miniconda_version 24.1.2-0 --prefix /Users/mathomp4/installed/Core/GEOSpyD |& tee install.24.1.2-0_py3.12.log
---
--- NOTE: You'll need to set the date below!
---
+--[[ File for GEOSpyD
+
+Installed using the GEOSpyD installer script on github:
+
+  git@github.com:GMAO-SI-Team/GEOSpyD.git
+
+and I ran
+
+  ./install_miniconda.bash --python_version 3.12 --miniconda_version 24.1.2-0 --prefix /Users/mathomp4/installed/Core/GEOSpyD |& tee install.24.1.2-0_py3.12.log
+
+NOTE: You'll need to set the date below!
+--]]
 
 family("Python3")
 

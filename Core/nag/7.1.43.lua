@@ -1,43 +1,44 @@
---
--- stub routine for nag 7.1.43 --
---
--- To install NAG, you mount the DMG and then cd to it in /Volumes
--- Then run INSTALL.sh and put in *absolute* paths:
---
---  $HOME/installed/Core/nag/7.1.43/bin
---
--- NOTE 1
---
----- Until NAG fixes something on their end, you need to run a command
----- if nagfor is installed in userspace (i.e., you can't change
----- /usr/local/lib)
-----
----- You must run:
-----
----- install_name_tool -id $HOME/installed/Core/nag/7.1.43/lib/NAG_Fortran/libf71rts.dylib $HOME/installed/Core/nag/7.1.43/lib/NAG_Fortran/libf71rts.dylib
-----
----- I cannot figure out yet how to make this more generic. I'd think
----- @executable_path should work, but I guess not? Maybe something with
----- @rpath?
---
--- NOTE 2
---
----- Before, I had go into Finder and run:
----- 
-----  $HOME/installed/Core/nag/7.1.43/lib/NAG_Fortran/nagfor
-----
----- for permissions issues before I could build anything with it. 
----- But now it looks like you need admin rights. But once you do that
----- and cancel then ...
---
--- NOTE 3
---
----- you seem to be able to just run in Terminal:
----- 
-----   $HOME/installed/Core/nag/7.1.43/bin/nagfor
-----
----- And it worked!
---
+--[[
+
+stub routine for nag 7.1.43
+
+To install NAG, you mount the DMG and then cd to it in /Volumes
+Then run INSTALL.sh and put in *absolute* paths:
+
+$HOME/installed/Core/nag/7.1.43/bin
+
+NOTE 1
+
+Until NAG fixes something on their end, you need to run a command
+if nagfor is installed in userspace (i.e., you can't change
+/usr/local/lib)
+
+You must run:
+
+install_name_tool -id $HOME/installed/Core/nag/7.1.43/lib/NAG_Fortran/libf71rts.dylib $HOME/installed/Core/nag/7.1.43/lib/NAG_Fortran/libf71rts.dylib
+
+I cannot figure out yet how to make this more generic. I'd think
+@executable_path should work, but I guess not? Maybe something with
+@rpath?
+
+NOTE 2
+
+Before, I had go into Finder and run:
+
+$HOME/installed/Core/nag/7.1.43/lib/NAG_Fortran/nagfor
+
+for permissions issues before I could build anything with it. 
+But now it looks like you need admin rights. But once you do that
+and cancel then ...
+
+NOTE 3
+
+you seem to be able to just run in Terminal:
+
+$HOME/installed/Core/nag/7.1.43/bin/nagfor
+
+And it worked!
+--]]
 
 family("Compiler")
 

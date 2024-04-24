@@ -1,5 +1,5 @@
--- stub routine for clang + gfortran-13 from brew  
--- 
+-- stub routine for clang + gfortran-13 from brew
+--
 -- install gcc-13 via:
 --   brew install gcc@13
 
