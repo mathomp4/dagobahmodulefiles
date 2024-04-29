@@ -20,17 +20,19 @@ NOTE2: Added the hwloc, libevent, and pmix line as Open MPI 5 seems to need thes
 
 This was built using:
 
-mkdir build-nag-7.1.43 && cd build-nag-7.1.43
+  ml nag/7.1.43
 
-../configure --disable-wrapper-rpath --disable-wrapper-runpath \
-  CC=clang CXX=clang++ FC=nagfor \
-  --with-hwloc=internal --with-libevent=internal --with-pmix=internal \
-   --prefix=$HOME/installed/Compiler/nag-7.1.43/openmpi/5.0.1 |& tee configure.nag-7.1.43.log
+  mkdir build-nag-7.1.43 && cd build-nag-7.1.43
 
-mv config.log config.nag-7.1.43.log
-make -j4 |& tee make.nag-7.1.43.log
-make install |& tee makeinstall.nag-7.1.43.log
-make check |& tee makecheck.nag-7.1.43.log
+  ../configure --disable-wrapper-rpath --disable-wrapper-runpath \
+    CC=clang CXX=clang++ FC=nagfor \
+    --with-hwloc=internal --with-libevent=internal --with-pmix=internal \
+    --prefix=$HOME/installed/Compiler/nag-7.1.43/openmpi/5.0.1 |& tee configure.nag-7.1.43.log
+
+  mv config.log config.nag-7.1.43.log
+  make -j4 |& tee make.nag-7.1.43.log
+  make install |& tee makeinstall.nag-7.1.43.log
+  make check |& tee makecheck.nag-7.1.43.log
 
 --]]
 

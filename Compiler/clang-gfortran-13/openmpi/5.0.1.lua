@@ -7,17 +7,19 @@ NOTE2: Added the hwloc, libevent, and pmix line as Open MPI 5 seems to need thes
 
 This was built using:
 
-mkdir build-clang-gfortran-13 && cd build-clang-gfortran-13
+  ml clang-gfortran/13
 
-../configure --disable-wrapper-rpath --disable-wrapper-runpath \
-  CC=clang CXX=clang++ FC=gfortran-13 \
-  --with-hwloc=internal --with-libevent=internal --with-pmix=internal \
-  --prefix=$HOME/installed/Compiler/clang-gfortran-13/openmpi/5.0.1 |& tee configure.clang-gfortran-13.log
+  mkdir build-clang-gfortran-13 && cd build-clang-gfortran-13
 
-mv config.log config.clang-gfortran-13.log
-make -j6 |& tee make.clang-gfortran-13.log
-make install |& tee makeinstall.clang-gfortran-13.log
-make check |& tee makecheck.clang-gfortran-13.log
+  ../configure --disable-wrapper-rpath --disable-wrapper-runpath \
+    CC=clang CXX=clang++ FC=gfortran-13 \
+    --with-hwloc=internal --with-libevent=internal --with-pmix=internal \
+    --prefix=$HOME/installed/Compiler/clang-gfortran-13/openmpi/5.0.1 |& tee configure.clang-gfortran-13.log
+
+  mv config.log config.clang-gfortran-13.log
+  make -j6 |& tee make.clang-gfortran-13.log
+  make install |& tee makeinstall.clang-gfortran-13.log
+  make check |& tee makecheck.clang-gfortran-13.log
 
 --]]
 

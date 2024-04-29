@@ -1,6 +1,8 @@
 --[[
 This was built using:
 
+  ml intel-clang openmpi
+
   make -j4 install ESMF_COMM=openmpi ESMF_COMPILER=intelclang prefix=$HOME/installed/MPI/intel-clang-2023.2.0/openmpi-5.0.1/Baselibs/7.17.1/Darwin |& tee makeinstall.intel-clang-2023.2.0_openmpi-5.0.1.log
 
 NOTE: xgboost will not build because Rosetta2 + clang + libomp from brew doesn't work

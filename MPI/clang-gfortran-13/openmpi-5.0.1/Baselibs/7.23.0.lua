@@ -6,6 +6,8 @@ This was cloned with:
 
 This was built using:
 
+  ml clang-gfortran/13 openmpi
+
   make -j6 install ESMF_COMM=openmpi ESMF_COMPILER=gfortranclang prefix=$HOME/installed/MPI/clang-gfortran-13/openmpi-5.0.1/Baselibs/7.23.0/Darwin |& tee makeinstall.clang-gfortran-13_openmpi-5.0.1.log
 
 NOTE: To build curl on Parcel, I had to do:
