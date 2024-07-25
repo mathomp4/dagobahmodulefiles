@@ -2,13 +2,13 @@
 
 This was cloned with:
 
-  git clone -j 4 --recurse-submodules -b v7.23.0 https://github.com/GEOS-ESM/ESMA-Baselibs.git ESMA-Baselibs-7.23.0/src
+  git clone -j 4 --recurse-submodules -b v7.24.0 https://github.com/GEOS-ESM/ESMA-Baselibs.git ESMA-Baselibs-7.24.0/src
 
 This was built using:
 
-  ml clang-gfortran/12 openmpi/5.0.1
+  ml clang-gfortran/13 openmpi
 
-  make -j6 install ESMF_COMM=openmpi ESMF_COMPILER=gfortranclang prefix=$HOME/installed/MPI/clang-gfortran-12/openmpi-5.0.1/Baselibs/7.23.0/Darwin |& tee makeinstall.clang-gfortran-12_openmpi-5.0.1.log
+  make -j6 install ESMF_COMM=openmpi ESMF_COMPILER=gfortranclang prefix=$HOME/installed/MPI/clang-gfortran-13/openmpi-5.0.1/Baselibs/7.24.0/Darwin |& tee makeinstall.clang-gfortran-13_openmpi-5.0.1.log
 
 NOTE: To build curl on Parcel, I had to do:
 
@@ -32,7 +32,7 @@ as udunits2 needs makeinfo.
 
 family("Baselibs")
 
-local compilername = "clang-gfortran-12"
+local compilername = "clang-gfortran-13"
 local mpiname = "openmpi-5.0.1"
 
 local version = myModuleVersion()

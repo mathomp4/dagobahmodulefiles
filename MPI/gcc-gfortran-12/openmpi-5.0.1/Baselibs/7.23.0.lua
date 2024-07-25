@@ -6,9 +6,9 @@ This was cloned with:
 
 This was built using:
 
-  ml clang-gfortran/12 openmpi/5.0.1
+  ml gcc-gfortran/12 openmpi
 
-  make -j6 install ESMF_COMM=openmpi ESMF_COMPILER=gfortranclang prefix=$HOME/installed/MPI/clang-gfortran-12/openmpi-5.0.1/Baselibs/7.23.0/Darwin |& tee makeinstall.clang-gfortran-12_openmpi-5.0.1.log
+  make -j6 install ESMF_COMM=openmpi ESMF_COMPILER=gfortran prefix=$HOME/installed/MPI/gcc-gfortran-12/openmpi-5.0.1/Baselibs/7.23.0/Darwin |& tee makeinstall.gcc-gfortran-12_openmpi-5.0.1.log
 
 NOTE: To build curl on Parcel, I had to do:
 
@@ -32,7 +32,7 @@ as udunits2 needs makeinfo.
 
 family("Baselibs")
 
-local compilername = "clang-gfortran-12"
+local compilername = "gcc-gfortran-12"
 local mpiname = "openmpi-5.0.1"
 
 local version = myModuleVersion()
