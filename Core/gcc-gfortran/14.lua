@@ -20,3 +20,6 @@ setenv("CC",pathJoin(bindir,"gcc-14"))
 setenv("CXX",pathJoin(bindir,"g++-14"))
 setenv("FC",pathJoin(bindir,"gfortran-14"))
 setenv("F90",pathJoin(bindir,"gfortran-14"))
+
+-- Bug fix for XCode 16
+setenv("SDKROOT","/Library/Developer/CommandLineTools/SDKs/MacOSX14.sdk")

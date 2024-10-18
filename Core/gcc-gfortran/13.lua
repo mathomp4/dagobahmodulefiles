@@ -20,3 +20,5 @@ setenv("CC",pathJoin(bindir,"gcc-13"))
 setenv("CXX",pathJoin(bindir,"g++-13"))
 setenv("FC",pathJoin(bindir,"gfortran-13"))
 setenv("F90",pathJoin(bindir,"gfortran-13"))
+
+setenv("SDKROOT","/Library/Developer/CommandLineTools/SDKs/MacOSX14.sdk")
