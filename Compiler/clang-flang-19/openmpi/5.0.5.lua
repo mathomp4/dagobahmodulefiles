@@ -5,33 +5,30 @@ NOTE1: Added new OMPI_MCA flag from https://github.com/open-mpi/ompi/issues/8350
 NOTE2: Added the hwloc, libevent, and pmix line as Open MPI 5 seems to need these and
        even if Brew can provide them (like libevent), it doesn't seem to find them
 
-NOTE3: This is built with a hacked version of Open MPI to echo how spack-stack
-       builds openmpi. See: https://github.com/JCSDA/spack/blob/5a06f19dd176f84159ced4ca75d8cbee3a6b9e56/var/spack/repos/builtin/packages/openmpi/package.py#L407-L414
-
 This was built using:
 
-  ml clang-gfortran/12
+ml clang-flang/19
 
-  mkdir build-clang-gfortran-12 && cd build-clang-gfortran-12
+mkdir build-clang-flang-19 && cd build-clang-flang-19
 
-  ../configure --disable-wrapper-rpath --disable-wrapper-runpath \
-    CC=clang CXX=clang++ FC=gfortran-12 \
-    --with-hwloc=internal --with-libevent=internal --with-pmix=internal \
-    --prefix=$HOME/installed/Compiler/clang-gfortran-12/openmpi/5.0.1-two_level |& tee configure.clang-gfortran-12.log
+../configure --disable-wrapper-rpath --disable-wrapper-runpath \
+  CC=clang CXX=clang++ FC=flang-new \
+  --with-hwloc=internal --with-libevent=internal --with-pmix=internal \
+  --prefix=$HOME/installed/Compiler/clang-flang-19/openmpi/5.0.5 |& tee configure.clang-flang-19.log
 
-  mv config.log config.clang-gfortran-12.log
-  make -j6 |& tee make.clang-gfortran-12.log
-  make install |& tee makeinstall.clang-gfortran-12.log
-  make check |& tee makecheck.clang-gfortran-12.log
+mv config.log config.clang-flang-19.log
+make -j6 |& tee make.clang-flang-19.log
+make install |& tee makeinstall.clang-flang-19.log
+make check |& tee makecheck.clang-flang-19.log
 
 --]]
 
 family("MPI")
-prereq("clang-gfortran/12")
+prereq("clang-flang/19")
 
-local compilername = "clang-gfortran-12"
+local compilername = "clang-flang-19"
 
-local version = "5.0.1-two_level"
+local version = "5.0.5"
 local compiler = pathJoin("Compiler",compilername)
 local homedir = os.getenv("HOME")
 local installdir = pathJoin(homedir,"installed")
@@ -39,7 +36,7 @@ local pkgdir = pathJoin(installdir,compiler,"openmpi",version)
 
 -- Setup Modulepath for packages built by this MPI stack
 local mroot = os.getenv("MODULEPATH_ROOT")
-local mdir = pathJoin(mroot,"MPI/clang-gfortran-12",("openmpi-"..version))
+local mdir = pathJoin(mroot,"MPI/clang-flang-19",("openmpi-"..version))
 prepend_path("MODULEPATH", mdir)
 
 setenv("OPENMPI",pkgdir)
