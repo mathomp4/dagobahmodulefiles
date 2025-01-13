@@ -7,28 +7,28 @@ NOTE2: Added the hwloc, libevent, and pmix line as Open MPI 5 seems to need thes
 
 This was built using:
 
-ml clang-gfortran/14
+ml clang-gfortran/13
 
-mkdir build-clang-gfortran-14 && cd build-clang-gfortran-14
+mkdir build-clang-gfortran-13 && cd build-clang-gfortran-13
 
 ../configure --disable-wrapper-rpath --disable-wrapper-runpath \
-  CC=clang CXX=clang++ FC=gfortran-14 \
+  CC=clang CXX=clang++ FC=gfortran-13 \
   --with-hwloc=internal --with-libevent=internal --with-pmix=internal \
-  --prefix=$HOME/installed/Compiler/clang-gfortran-14/openmpi/5.0.5 |& tee configure.clang-gfortran-14.log
+  --prefix=$HOME/installed/Compiler/clang-gfortran-13/openmpi/5.0.6 |& tee configure.clang-gfortran-13.log
 
-mv config.log config.clang-gfortran-14.log
-make -j6 |& tee make.clang-gfortran-14.log
-make install |& tee makeinstall.clang-gfortran-14.log
-make check |& tee makecheck.clang-gfortran-14.log
+mv config.log config.clang-gfortran-13.log
+make -j6 |& tee make.clang-gfortran-13.log
+make install |& tee makeinstall.clang-gfortran-13.log
+make check |& tee makecheck.clang-gfortran-13.log
 
 --]]
 
 family("MPI")
-prereq("clang-gfortran/14")
+prereq("clang-gfortran/13")
 
-local compilername = "clang-gfortran-14"
+local compilername = "clang-gfortran-13"
 
-local version = "5.0.5"
+local version = "5.0.6"
 local compiler = pathJoin("Compiler",compilername)
 local homedir = os.getenv("HOME")
 local installdir = pathJoin(homedir,"installed")
@@ -36,7 +36,7 @@ local pkgdir = pathJoin(installdir,compiler,"openmpi",version)
 
 -- Setup Modulepath for packages built by this MPI stack
 local mroot = os.getenv("MODULEPATH_ROOT")
-local mdir = pathJoin(mroot,"MPI/clang-gfortran-14",("openmpi-"..version))
+local mdir = pathJoin(mroot,"MPI/clang-gfortran-13",("openmpi-"..version))
 prepend_path("MODULEPATH", mdir)
 
 setenv("OPENMPI",pkgdir)
