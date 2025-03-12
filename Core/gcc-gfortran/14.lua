@@ -8,7 +8,7 @@ family("Compiler")
 
 local version = "14"
 local homedir = os.getenv("HOME")
-local homebrewdir = pathJoin(homedir,".homebrew/brew")
+local homebrewdir = os.getenv("BREWPATH")
 local bindir = pathJoin(homebrewdir,"bin")
 
 -- Setup Modulepath for packages built by this compiler

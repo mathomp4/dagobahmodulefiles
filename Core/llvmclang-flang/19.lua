@@ -9,7 +9,7 @@ family("Compiler")
 
 local version = "19"
 local homedir = os.getenv("HOME")
-local homebrewdir = pathJoin(homedir,".homebrew/brew")
+local homebrewdir = os.getenv("BREWPATH")
 local brewllvmdir = pathJoin(homebrewdir,"opt/llvm")
 local cbindir = pathJoin(brewllvmdir,"bin")
 local fbindir = pathJoin(homebrewdir,"bin")

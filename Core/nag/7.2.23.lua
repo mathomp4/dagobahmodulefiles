@@ -77,5 +77,5 @@ local sw_vers = subprocess("sw_vers -productVersion"):gsub("\n$","")
 pushenv("MACOSX_DEPLOYMENT_TARGET",sw_vers)
 
 -- per scivision, set OpenMP_ROOT for clang: https://gist.github.com/scivision/16c2ca1dc250f54d34f1a1a35596f4a0
-local homebrewdir = pathJoin(homedir,".homebrew/brew")
+local homebrewdir = os.getenv("BREWPATH")
 setenv("OpenMP_ROOT",pathJoin(homebrewdir,"opt/libomp"))
