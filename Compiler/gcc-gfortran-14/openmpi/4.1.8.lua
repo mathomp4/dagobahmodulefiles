@@ -1,45 +1,31 @@
 --[[
 
-NOTE NOTE NOTE
-
-You *MUST* run:
-
-unset MACOSX_DEPLOYMENT_TARGET
-
-to avoid the -dynamiclib not allowed error
-
-This is because MACOSX_DEPLOYMENT_TARGET triggers a bad codepath
-inside the configure script
-
------------
-
-NOTE2: Added the hwloc, libevent, and pmix line as Open MPI 5 seems to need these and
-       even if Brew can provide them (like libevent), it doesn't seem to find them
+NOTE1: Added new OMPI_MCA flag from https://github.com/open-mpi/ompi/issues/8350
 
 This was built using:
 
-ml nag/7.2.20
+ml gcc-gfortran/14
 
-mkdir build-nag-7.2.20 && cd build-nag-7.2.20
+mkdir build-gcc-gfortran-14 && cd build-gcc-gfortran-14
 
 ../configure --disable-wrapper-rpath --disable-wrapper-runpath \
-  CC=clang CXX=clang++ FC=nagfor \
+  CC=gcc-14 CXX=g++-14 FC=gfortran-14 \
   --with-hwloc=internal --with-libevent=internal --with-pmix=internal \
-  --prefix=$HOME/installed/Compiler/nag-7.2.20/openmpi/5.0.5 |& tee configure.nag-7.2.20.log
+  --prefix=$HOME/installed/Compiler/gcc-gfortran-14/openmpi/4.1.8 |& tee configure.gcc-gfortran-14.log
 
-mv config.log config.nag-7.2.20.log
-make -j6 |& tee make.nag-7.2.20.log
-make install |& tee makeinstall.nag-7.2.20.log
-make check |& tee makecheck.nag-7.2.20.log
+mv config.log config.gcc-gfortran-14.log
+make -j6 |& tee make.gcc-gfortran-14.log
+make install |& tee makeinstall.gcc-gfortran-14.log
+make check |& tee makecheck.gcc-gfortran-14.log
 
 --]]
 
 family("MPI")
-prereq("nag/7.2.20")
+prereq("gcc-gfortran/14")
 
-local compilername = "nag-7.2.20"
+local compilername = "gcc-gfortran-14"
 
-local version = "5.0.5"
+local version = "4.1.8"
 local compiler = pathJoin("Compiler",compilername)
 local homedir = os.getenv("HOME")
 local installdir = pathJoin(homedir,"installed")
@@ -47,7 +33,7 @@ local pkgdir = pathJoin(installdir,compiler,"openmpi",version)
 
 -- Setup Modulepath for packages built by this MPI stack
 local mroot = os.getenv("MODULEPATH_ROOT")
-local mdir = pathJoin(mroot,"MPI/nag-7.2.20",("openmpi-"..version))
+local mdir = pathJoin(mroot,"MPI/gcc-gfortran-14",("openmpi-"..version))
 prepend_path("MODULEPATH", mdir)
 
 setenv("OPENMPI",pkgdir)
@@ -66,4 +52,5 @@ prepend_path("INCLUDE",pathJoin(pkgdir,"include"))
 prepend_path("MANPATH",pathJoin(pkgdir,"share/man"))
 
 -- setenv("OMPI_MCA_btl_tcp_if_include","lo0")
+setenv("OMPI_MCA_io","romio321")
 setenv("OMPI_MCA_btl","^tcp")

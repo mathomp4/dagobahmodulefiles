@@ -1,34 +1,44 @@
 --[[
 
-NOTE1: Added new OMPI_MCA flag from https://github.com/open-mpi/ompi/issues/8350
+NOTE NOTE NOTE
 
-NOTE2: Added the hwloc, libevent, and pmix line as Open MPI 5 seems to need these and
-       even if Brew can provide them (like libevent), it doesn't seem to find them
+You *MUST* run:
+
+unset MACOSX_DEPLOYMENT_TARGET
+
+to avoid the -dynamiclib not allowed error
+
+This is because MACOSX_DEPLOYMENT_TARGET triggers a bad codepath
+inside the configure script
+
+-----------
+
+NOTE1: Added new OMPI_MCA flag from https://github.com/open-mpi/ompi/issues/8350
 
 This was built using:
 
-ml clang-gfortran/13
+ml nag/7.2.20
 
-mkdir build-clang-gfortran-13 && cd build-clang-gfortran-13
+mkdir build-nag-7.2.20 && cd build-nag-7.2.20
 
 ../configure --disable-wrapper-rpath --disable-wrapper-runpath \
-  CC=clang CXX=clang++ FC=gfortran-13 \
+  CC=clang CXX=clang++ FC=nagfor \
   --with-hwloc=internal --with-libevent=internal --with-pmix=internal \
-  --prefix=$HOME/installed/Compiler/clang-gfortran-13/openmpi/5.0.6 |& tee configure.clang-gfortran-13.log
+  --prefix=$HOME/installed/Compiler/nag-7.2.20/openmpi/4.1.8 |& tee configure.nag-7.2.20.log
 
-mv config.log config.clang-gfortran-13.log
-make -j6 |& tee make.clang-gfortran-13.log
-make install |& tee makeinstall.clang-gfortran-13.log
-make check |& tee makecheck.clang-gfortran-13.log
+mv config.log config.nag-7.2.20.log
+make -j6 |& tee make.nag-7.2.20.log
+make install |& tee makeinstall.nag-7.2.20.log
+make check |& tee makecheck.nag-7.2.20.log
 
 --]]
 
 family("MPI")
-prereq("clang-gfortran/13")
+prereq("nag/7.2.20")
 
-local compilername = "clang-gfortran-13"
+local compilername = "nag-7.2.20"
 
-local version = "5.0.6"
+local version = "4.1.8"
 local compiler = pathJoin("Compiler",compilername)
 local homedir = os.getenv("HOME")
 local installdir = pathJoin(homedir,"installed")
@@ -36,7 +46,7 @@ local pkgdir = pathJoin(installdir,compiler,"openmpi",version)
 
 -- Setup Modulepath for packages built by this MPI stack
 local mroot = os.getenv("MODULEPATH_ROOT")
-local mdir = pathJoin(mroot,"MPI/clang-gfortran-13",("openmpi-"..version))
+local mdir = pathJoin(mroot,"MPI/nag-7.2.20",("openmpi-"..version))
 prepend_path("MODULEPATH", mdir)
 
 setenv("OPENMPI",pkgdir)

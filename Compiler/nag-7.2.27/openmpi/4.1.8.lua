@@ -13,33 +13,32 @@ inside the configure script
 
 -----------
 
-NOTE2: Added the hwloc, libevent, and pmix line as Open MPI 5 seems to need these and
-       even if Brew can provide them (like libevent), it doesn't seem to find them
+NOTE1: Added new OMPI_MCA flag from https://github.com/open-mpi/ompi/issues/8350
 
 This was built using:
 
-ml nag/7.2.23
+ml nag/7.2.27
 
-mkdir build-nag-7.2.23 && cd build-nag-7.2.23
+mkdir build-nag-7.2.27 && cd build-nag-7.2.27
 
 ../configure --disable-wrapper-rpath --disable-wrapper-runpath \
-   CC=clang CXX=clang++ FC=nagfor \
-   --with-hwloc=internal --with-libevent=internal --with-pmix=internal \
-    --prefix=$HOME/installed/Compiler/nag-7.2.23/openmpi/5.0.6 |& tee configure.nag-7.2.23.log
+  CC=clang CXX=clang++ FC=nagfor \
+  --with-hwloc=internal --with-libevent=internal --with-pmix=internal \
+  --prefix=$HOME/installed/Compiler/nag-7.2.27/openmpi/4.1.8 |& tee configure.nag-7.2.27.log
 
-mv config.log config.nag-7.2.23.log
-make -j4 |& tee make.nag-7.2.23.log
-make install |& tee makeinstall.nag-7.2.23.log
-make check |& tee makecheck.nag-7.2.23.log
+mv config.log config.nag-7.2.27.log
+make -j6 |& tee make.nag-7.2.27.log
+make install |& tee makeinstall.nag-7.2.27.log
+make check |& tee makecheck.nag-7.2.27.log
 
 --]]
 
 family("MPI")
-prereq("nag/7.2.23")
+prereq("nag/7.2.27")
 
-local compilername = "nag-7.2.23"
+local compilername = "nag-7.2.27"
 
-local version = "5.0.6"
+local version = "4.1.8"
 local compiler = pathJoin("Compiler",compilername)
 local homedir = os.getenv("HOME")
 local installdir = pathJoin(homedir,"installed")
@@ -47,7 +46,7 @@ local pkgdir = pathJoin(installdir,compiler,"openmpi",version)
 
 -- Setup Modulepath for packages built by this MPI stack
 local mroot = os.getenv("MODULEPATH_ROOT")
-local mdir = pathJoin(mroot,"MPI/nag-7.2.23",("openmpi-"..version))
+local mdir = pathJoin(mroot,"MPI/nag-7.2.27",("openmpi-"..version))
 prepend_path("MODULEPATH", mdir)
 
 setenv("OPENMPI",pkgdir)
@@ -66,4 +65,5 @@ prepend_path("INCLUDE",pathJoin(pkgdir,"include"))
 prepend_path("MANPATH",pathJoin(pkgdir,"share/man"))
 
 -- setenv("OMPI_MCA_btl_tcp_if_include","lo0")
+setenv("OMPI_MCA_io","romio321")
 setenv("OMPI_MCA_btl","^tcp")

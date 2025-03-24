@@ -1,10 +1,10 @@
 --[[
-stub routine for nag 7.2.23
+stub routine for nag 7.2.27
 
 To install NAG, you mount the DMG and then cd to it in /Volumes
 Then run INSTALL.sh and put in *absolute* paths:
 
-$HOME/installed/Core/nag/7.2.23/bin
+$HOME/installed/Core/nag/7.2.27/bin
 
 NOTE 1
 
@@ -14,7 +14,7 @@ if nagfor is installed in userspace (i.e., you can't change
 
 You must run:
 
-install_name_tool -id $HOME/installed/Core/nag/7.2.23/lib/NAG_Fortran/libf72rts.dylib $HOME/installed/Core/nag/7.2.23/lib/NAG_Fortran/libf72rts.dylib
+install_name_tool -id $HOME/installed/Core/nag/7.2.27/lib/NAG_Fortran/libf72rts.dylib $HOME/installed/Core/nag/7.2.27/lib/NAG_Fortran/libf72rts.dylib
 
 I cannot figure out yet how to make this more generic. I'd think
 @executable_path should work, but I guess not? Maybe something with
@@ -24,7 +24,7 @@ NOTE 2
 
 Before, I had go into Finder and run:
 
-$HOME/installed/Core/nag/7.2.23/lib/NAG_Fortran/nagfor
+$HOME/installed/Core/nag/7.2.27/lib/NAG_Fortran/nagfor
 
 for permissions issues before I could build anything with it. 
 But now it looks like you need admin rights. But once you do that
@@ -34,14 +34,22 @@ NOTE 3
 
 you seem to be able to just run in Terminal:
 
-$HOME/installed/Core/nag/7.2.23/bin/nagfor
+$HOME/installed/Core/nag/7.2.27/bin/nagfor
 
-And it worked!
+NOTE 4
+
+Well on macOS 15, I now seem to need to go to:
+
+Settings --> Privacy & Security --> Scroll down to Security
+
+Click "Open Anyway' and then try opening in Finder. And *then*
+you need Admin rights. 
+
 --]]
 
 family("Compiler")
 
-local nag_version = "7.2.23"
+local nag_version = "7.2.27"
 local nag_version_with_name = "nag-" .. nag_version
 
 local homedir = os.getenv("HOME")
