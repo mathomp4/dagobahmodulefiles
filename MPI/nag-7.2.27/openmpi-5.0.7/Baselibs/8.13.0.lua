@@ -2,9 +2,9 @@
 
 This was built using:
 
-ml nag/7.2.27 openmpi/4.1.8
+ml nag/7.2.27 openmpi/5.0.7
 
-make -j6 install ESMF_COMM=openmpi ESMF_COMPILER=nag prefix=$HOME/installed/MPI/nag-7.2.27/openmpi-4.1.8/Baselibs/8.13.0/Darwin |& tee makeinstall.nag-7.2.27_openmpi-4.1.8.log
+make -j6 install ESMF_COMM=openmpi ESMF_COMPILER=nag prefix=$HOME/installed/MPI/nag-7.2.27/openmpi-5.0.7/Baselibs/8.13.0/Darwin |& tee makeinstall.nag-7.2.27_openmpi-5.0.7.log
 
 NOTE: To build curl on Parcel, I had to do:
 
@@ -27,10 +27,10 @@ as udunits2 needs makeinfo.
 --]]
 
 family("Baselibs")
-prereq("nag/7.2.27", "openmpi/4.1.8")
+prereq("nag/7.2.27", "openmpi/5.0.7")
 
 local compilername = "nag-7.2.27"
-local mpiname = "openmpi-4.1.8"
+local mpiname = "openmpi-5.0.7"
 
 local version = myModuleVersion()
 local pathdir = pathJoin("MPI",compilername,mpiname)
