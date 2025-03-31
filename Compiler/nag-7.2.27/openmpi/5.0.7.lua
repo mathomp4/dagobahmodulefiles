@@ -13,7 +13,8 @@ inside the configure script
 
 -----------
 
-NOTE1: Added new OMPI_MCA flag from https://github.com/open-mpi/ompi/issues/8350
+NOTE2: Added the hwloc, libevent, and pmix line as Open MPI 5 seems to need these and
+       even if Brew can provide them (like libevent), it doesn't seem to find them
 
 This was built using:
 
@@ -24,7 +25,7 @@ mkdir build-nag-7.2.27 && cd build-nag-7.2.27
 ../configure --disable-wrapper-rpath --disable-wrapper-runpath \
   CC=clang CXX=clang++ FC=nagfor \
   --with-hwloc=internal --with-libevent=internal --with-pmix=internal \
-  --prefix=$HOME/installed/Compiler/nag-7.2.27/openmpi/4.1.8 |& tee configure.nag-7.2.27.log
+  --prefix=$HOME/installed/Compiler/nag-7.2.27/openmpi/5.0.7 |& tee configure.nag-7.2.27.log
 
 mv config.log config.nag-7.2.27.log
 make -j6 |& tee make.nag-7.2.27.log
@@ -38,7 +39,7 @@ prereq("nag/7.2.27")
 
 local compilername = "nag-7.2.27"
 
-local version = "4.1.8"
+local version = "5.0.7"
 local compiler = pathJoin("Compiler",compilername)
 local homedir = os.getenv("HOME")
 local installdir = pathJoin(homedir,"installed")
@@ -65,5 +66,4 @@ prepend_path("INCLUDE",pathJoin(pkgdir,"include"))
 prepend_path("MANPATH",pathJoin(pkgdir,"share/man"))
 
 -- setenv("OMPI_MCA_btl_tcp_if_include","lo0")
-setenv("OMPI_MCA_io","romio321")
 setenv("OMPI_MCA_btl","^tcp")
