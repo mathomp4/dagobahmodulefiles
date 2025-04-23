@@ -4,7 +4,7 @@ This was built using:
 
 ml nag openmpi
 
-make -j6 install ESMF_COMM=openmpi ESMF_COMPILER=nag prefix=$HOME/installed/MPI/nag-7.2.20/openmpi-5.0.5/Baselibs/8.7.0/Darwin |& tee makeinstall.nag-7.2.20_openmpi-5.0.5.log
+make -j6 install ESMF_COMM=openmpi ESMF_COMPILER=nag prefix=$HOME/installed/MPI/nag-7.2.20/openmpi-5.0.5/Baselibs/8.13.0/Darwin |& tee makeinstall.nag-7.2.20_openmpi-5.0.5.log
 
 NOTE: To build curl on Parcel, I had to do:
 
