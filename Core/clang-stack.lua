@@ -1,4 +1,5 @@
 -- quick load --
+family("stack")
 
 load("GEOSpyD")
 load("clang-gfortran")
