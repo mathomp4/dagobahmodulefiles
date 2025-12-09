@@ -14,7 +14,7 @@ mkdir build-gcc-gfortran-14 && cd build-gcc-gfortran-14
 ../configure --disable-wrapper-rpath --disable-wrapper-runpath \
   CC=gcc-14 CXX=g++-14 FC=gfortran-14 \
   --with-hwloc=internal --with-libevent=internal --with-pmix=internal \
-  --prefix=$HOME/installed/Compiler/gcc-gfortran-14/openmpi/5.0.6 |& tee configure.gcc-gfortran-14.log
+  --prefix=$HOME/installed/Compiler/gcc-gfortran-14/openmpi/5.0.7 |& tee configure.gcc-gfortran-14.log
 
 mv config.log config.gcc-gfortran-14.log
 make -j6 |& tee make.gcc-gfortran-14.log
@@ -28,7 +28,7 @@ prereq("gcc-gfortran/14")
 
 local compilername = "gcc-gfortran-14"
 
-local version = "5.0.6"
+local version = "5.0.7"
 local compiler = pathJoin("Compiler",compilername)
 local homedir = os.getenv("HOME")
 local installdir = pathJoin(homedir,"installed")
