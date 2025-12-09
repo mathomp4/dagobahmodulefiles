@@ -18,26 +18,26 @@ NOTE2: Added the hwloc, libevent, and pmix line as Open MPI 5 seems to need thes
 
 This was built using:
 
-ml nag/7.2.36
+ml nag/7.2.40
 
-mkdir build-nag-7.2.36 && cd build-nag-7.2.36
+mkdir build-nag-7.2.40 && cd build-nag-7.2.40
 
 ../configure --disable-wrapper-rpath --disable-wrapper-runpath \
   CC=clang CXX=clang++ FC=nagfor \
   --with-hwloc=internal --with-libevent=internal --with-pmix=internal \
-  --prefix=$HOME/installed/Compiler/nag-7.2.36/openmpi/5.0.7 |& tee configure.nag-7.2.36.log
+  --prefix=$HOME/installed/Compiler/nag-7.2.40/openmpi/5.0.7 |& tee configure.nag-7.2.40.log
 
-mv config.log config.nag-7.2.36.log
-make -j6 |& tee make.nag-7.2.36.log
-make install |& tee makeinstall.nag-7.2.36.log
-make check |& tee makecheck.nag-7.2.36.log
+mv config.log config.nag-7.2.40.log
+make -j6 |& tee make.nag-7.2.40.log
+make install |& tee makeinstall.nag-7.2.40.log
+make check |& tee makecheck.nag-7.2.40.log
 
 --]]
 
 family("MPI")
-prereq("nag/7.2.36")
+prereq("nag/7.2.40")
 
-local compilername = "nag-7.2.36"
+local compilername = "nag-7.2.40"
 
 local version = "5.0.7"
 local compiler = pathJoin("Compiler",compilername)
@@ -47,7 +47,7 @@ local pkgdir = pathJoin(installdir,compiler,"openmpi",version)
 
 -- Setup Modulepath for packages built by this MPI stack
 local mroot = os.getenv("MODULEPATH_ROOT")
-local mdir = pathJoin(mroot,"MPI/nag-7.2.36",("openmpi-"..version))
+local mdir = pathJoin(mroot,"MPI/nag-7.2.40",("openmpi-"..version))
 prepend_path("MODULEPATH", mdir)
 
 setenv("OPENMPI",pkgdir)
