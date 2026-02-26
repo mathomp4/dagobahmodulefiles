@@ -1,35 +1,40 @@
 --[[
 
+This was cloned with:
+
+git clone -j 4 --recurse-submodules -b v8.24.0 https://github.com/GEOS-ESM/ESMA-Baselibs.git ESMA-Baselibs-8.24.0/src
+
 This was built using:
 
-ml nag/7.2.40 openmpi/5.0.7
+ml clang-gfortran/15 openmpi/5.0.7
 
-make -j6 install ESMF_COMM=openmpi ESMF_COMPILER=nag prefix=$HOME/installed/MPI/nag-7.2.40/openmpi-5.0.7/Baselibs/9.3.1/Darwin |& tee makeinstall.nag-7.2.40_openmpi-5.0.7.log
+NOTE: We seem to need ESMF_BOPT=g again to avoid some ESMF/MAPL issues
+
+make -j6 install ESMF_COMM=openmpi ESMF_COMPILER=gfortranclang ESMF_BOPT=g prefix=$HOME/installed/MPI/clang-gfortran-15/openmpi-5.0.7/Baselibs/8.24.0/Darwin |& tee makeinstall.clang-gfortran-15_openmpi-5.0.7.log
 
 NOTE: To build curl on Parcel, I had to do:
 
-brew install automake autoconf libtool
+  brew install automake autoconf libtool
 
 then I had to make symlinks so that it could find these:
 
-ln -s $(brew --prefix)/bin/automake $HOME/bin/automake
-ln -s $(brew --prefix)/bin/aclocal $HOME/bin/aclocal
-ln -s $(brew --prefix)/bin/glibtool $HOME/bin/libtool
+  ln -s $(brew --prefix)/bin/automake $HOME/bin/automake
+  ln -s $(brew --prefix)/bin/aclocal $HOME/bin/aclocal
+  ln -s $(brew --prefix)/bin/glibtool $HOME/bin/libtool
 
 NOTE THE LAST ONE! Brew installs glibtool, so as not to collide with clang libtool
 
 Also: To build udunits2 (and then nco and cdo) you need to install the texinfo package
 
-brew install texinfo
+  brew install texinfo
 
 as udunits2 needs makeinfo.
 
 --]]
 
 family("Baselibs")
-prereq("nag/7.2.40", "openmpi/5.0.7")
 
-local compilername = "nag-7.2.40"
+local compilername = "clang-gfortran-15"
 local mpiname = "openmpi-5.0.7"
 
 local version = myModuleVersion()
