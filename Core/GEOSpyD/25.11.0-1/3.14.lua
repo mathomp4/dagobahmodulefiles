@@ -33,3 +33,6 @@ unsetenv("ESMA_F2PY")
 prepend_path("PATH",pathJoin(pkgdir,"bin"))
 prepend_path("PROJ_LIB",pathJoin(pkgdir,"share/proj"))
 prepend_path("MANPATH",pathJoin(pkgdir,"share/man"))
+
+setenv("Python_ROOT_DIR",pkgdir)
+setenv("Python3_ROOT_DIR",pkgdir)
