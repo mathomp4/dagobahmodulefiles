@@ -6,7 +6,7 @@ git@github.com:GMAO-SI-Team/GEOSpyD.git
 
 and I ran
 
-./install_miniforge.bash --python_version 3.13 --miniforge_version 25.3.1-0 --prefix /Users/mathomp4/installed/Core/GEOSpyD |& tee install.25.3.1-0_py3.13.log
+./install_miniforge.bash --python_version 3.13 --miniforge_version 25.3.1-0 --prefix $HOME/installed/Core/GEOSpyD |& tee install.25.3.1-0_py3.13.log
 
 NOTE: You'll need to set the date below!
 --]]
