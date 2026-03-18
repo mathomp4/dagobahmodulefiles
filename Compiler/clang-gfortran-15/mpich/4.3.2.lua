@@ -10,6 +10,8 @@ ml clang-gfortran/15
 
 mkdir build-clang-gfortran-15 && cd build-clang-gfortran-15
 
+export FI_PROVIDER=tcp
+
 ../configure \
   CC=clang CXX=clang++ FC=gfortran-15 \
   --prefix=$HOME/installed/Compiler/clang-gfortran-15/mpich/4.3.2 |& tee configure.clang-gfortran-15.log
@@ -48,3 +50,4 @@ prepend_path("LIBRARY_PATH",pathJoin(pkgdir,"lib"))
 prepend_path("INCLUDE",pathJoin(pkgdir,"include"))
 prepend_path("MANPATH",pathJoin(pkgdir,"share/man"))
 
+setenv("FI_PROVIDER","tcp")
