@@ -45,6 +45,14 @@ Settings --> Privacy & Security --> Scroll down to Security
 Click "Open Anyway' and then try opening in Finder. And *then*
 you need Admin rights. 
 
+NOTE 5
+
+This might sometime work:
+
+mv the executable to a different name
+cat executable back to the original name
+add executable bit chmod
+
 --]]
 
 family("Compiler")
