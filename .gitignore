@@ -1,0 +1,15 @@
+# Secrets / credentials
+*.key
+*.pem
+*.env
+.env*
+secrets.*
+
+# macOS
+.DS_Store
+
+# Editor
+.idea/
+.vscode/
+*.swp
+*~
