@@ -14,7 +14,7 @@ export FI_PROVIDER=tcp
 
 ../configure \
   CC=clang CXX=clang++ FC=nagfor \
-  MPICHLIB_FFLAGS='-fpp' MPICHLIB_FCFLAGS='-fpp' --enable-f08 \
+  MPICHLIB_FFLAGS='-mismatch -fpp' MPICHLIB_FCFLAGS='-mismatch -fpp' --enable-f08 \
   --prefix=$HOME/installed/Compiler/nag-7.2.43/mpich/4.3.2 |& tee configure.nag-7.2.43.log
 
 mv config.log config.nag-7.2.43.log
