@@ -18,6 +18,14 @@ mkdir build-appleclang-flang-22 && cd build-appleclang-flang-22
 
 mv config.log config.appleclang-flang-22.log
 make -j6 |& tee make.appleclang-flang-22.log
+
+-- flang-22 does not understand macOS linker flags (-framework, -compatibility_version,
+-- -current_version) and fails when used as the linker driver for shared libraries.
+-- libtool bakes the FC compiler (flang-22) in as the linker for the FC tag at configure
+-- time, so we patch it after the build to use clang instead, which correctly forwards
+-- these flags to the Apple linker (ld).
+sed -i.bak '/### BEGIN LIBTOOL TAG CONFIG: FC/,/### END LIBTOOL TAG CONFIG: FC/ s/^CC="[^"]*"/CC="clang"/' libtool
+
 make install |& tee makeinstall.appleclang-flang-22.log
 make check |& tee makecheck.appleclang-flang-22.log
 
